@@ -30,11 +30,18 @@ async function run() {
     //   // console.log(getAllProducts);
     //   res.send(getOnlyCategoryProducts);
     // });
+
     // get categories
     app.get("/categories", async (req, res) => {
       const query = {};
       const result = await looki.find(query).toArray();
       res.send(result);
+    });
+    app.get("/new-arrival/:subcategory", async (req, res) => {
+      const subcategory = req.params.subcategory;
+      const query = { subcategory: subcategory };
+      const subCategoryAll = await looki.find(query).toArray();
+      res.send(subCategoryAll);
     });
   } finally {
   }
