@@ -20,7 +20,7 @@ async function run() {
   try {
     const looki = client.db("looki").collection("categories");
 
-    // get categories
+    // get all categories
     app.get("/categories", async (req, res) => {
       const query = {};
       const result = await looki.find(query).toArray();
