@@ -20,26 +20,34 @@ async function run() {
   try {
     const looki = client.db("looki").collection("categories");
 
-    // app.get("/categories", async (req, res) => {
-    //   const query = {};
-    //   const getAllProducts = await productsCollection.find(query).toArray();
-    //   const key = "category";
-    //   const getOnlyCategoryProducts = [
-    //     ...new Map(getAllProducts.map((item) => [item[key], item])).values(),
-    //   ];
-    //   // console.log(getAllProducts);
-    //   res.send(getOnlyCategoryProducts);
-    // });
-
     // get categories
     app.get("/categories", async (req, res) => {
       const query = {};
       const result = await looki.find(query).toArray();
-      res.send(result);
+      const key = "category";
+      const getOnlyCategoryProducts = [
+        ...new Map(result.map((item) => [item[key], item])).values(),
+      ];
+      res.send(getOnlyCategoryProducts);
     });
-    app.get("/new-arrival/:subcategory", async (req, res) => {
-      const subcategory = req.params.subcategory;
-      const query = { subcategory: subcategory };
+    // get Feature Product
+    app.get("/allproduct/:subCategory", async (req, res) => {
+      const subCategory = req.params.subCategory;
+      const query = { subCategory: subCategory };
+      const subCategoryAll = await looki.find(query).toArray();
+      res.send(subCategoryAll);
+    });
+    // get new Arrival
+    app.get("/allproduct/:subCategory", async (req, res) => {
+      const subCategory = req.params.subCategory;
+      const query = { subCategory: subCategory };
+      const subCategoryAll = await looki.find(query).toArray();
+      res.send(subCategoryAll);
+    });
+    // get Best Sellings
+    app.get("/allproduct/:subCategory", async (req, res) => {
+      const subCategory = req.params.subCategory;
+      const query = { subCategory: subCategory };
       const subCategoryAll = await looki.find(query).toArray();
       res.send(subCategoryAll);
     });
