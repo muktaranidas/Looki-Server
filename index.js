@@ -30,6 +30,9 @@ async function run() {
       ];
       res.send(getOnlyCategoryProducts);
     });
+
+    // get  category id
+
     // get Feature Product
     app.get("/allproduct/:subCategory", async (req, res) => {
       const subCategory = req.params.subCategory;
