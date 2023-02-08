@@ -30,9 +30,13 @@ async function run() {
       ];
       res.send(getOnlyCategoryProducts);
     });
-
-    // get  category id
-
+    // get  particular category
+    app.get("/categories/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await looki.findOne(query);
+      res.send(result);
+    });
     // get Feature Product
     app.get("/allproduct/:subCategory", async (req, res) => {
       const subCategory = req.params.subCategory;
