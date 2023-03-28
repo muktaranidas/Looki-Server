@@ -30,7 +30,7 @@ async function run() {
       ];
       res.send(getOnlyCategoryProducts);
     });
-    // get  particular category
+    // get  Particular category
     app.get("/categories/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
